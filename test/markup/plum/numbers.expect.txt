@@ -1,0 +1,6 @@
+<span class="hljs-keyword">plant</span> ints <span class="hljs-operator">=</span> [<span class="hljs-number">0</span>, <span class="hljs-number">42</span>, <span class="hljs-number">1_000_000</span>, <span class="hljs-number">0xFF</span>, <span class="hljs-number">0Xab_cd</span>, <span class="hljs-number">0o755</span>, <span class="hljs-number">0b1010_0101</span>]
+<span class="hljs-keyword">plant</span> floats <span class="hljs-operator">=</span> [<span class="hljs-number">3.14</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">1e9</span>, <span class="hljs-number">6.022e23</span>, <span class="hljs-number">2.5e-3</span>, <span class="hljs-number">1_000.000_1</span>]
+<span class="hljs-keyword">plant</span> range <span class="hljs-operator">=</span> <span class="hljs-number">1</span><span class="hljs-operator">..</span><span class="hljs-number">5</span>
+<span class="hljs-keyword">plant</span> inclusive <span class="hljs-operator">=</span> <span class="hljs-number">0</span><span class="hljs-operator">..=</span><span class="hljs-number">10</span>
+<span class="hljs-keyword">plant</span> slice <span class="hljs-operator">=</span> xs[<span class="hljs-number">1</span><span class="hljs-operator">..</span><span class="hljs-number">3</span>]
+<span class="hljs-keyword">plant</span> member <span class="hljs-operator">=</span> p.x1

@@ -1,0 +1,7 @@
+<span class="hljs-keyword">seed</span> math
+<span class="hljs-keyword">seed</span> net.http
+<span class="hljs-keyword">seed</span> net.http <span class="hljs-keyword">as</span> web
+<span class="hljs-keyword">seed</span> math { sqrt, <span class="hljs-variable constant_">PI</span> }
+<span class="hljs-keyword">seed</span> <span class="hljs-string">./shapes</span>
+<span class="hljs-keyword">seed</span> <span class="hljs-string">./models/user</span> <span class="hljs-keyword">as</span> user
+<span class="hljs-keyword">seed</span> <span class="hljs-string">../lib/plant</span>

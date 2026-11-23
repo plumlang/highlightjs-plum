@@ -1,0 +1,23 @@
+tree NotFound : Error {
+    path: str
+}
+
+try {
+    load("config.txt")
+} catch e: NotFound {
+    drop("missing: {e.path}")
+} catch e: ValueError {
+    throw e
+} catch e {
+    drop("other: {e.message}")
+} finally {
+    drop("done")
+}
+
+plant safe = try int("x") ?? 0
+plant upper = find_user(1)?.upper()
+if plant name = find_user(1) {
+    drop("found {name}")
+}
+assert(safe == 0, "parsed")
+exit(1)

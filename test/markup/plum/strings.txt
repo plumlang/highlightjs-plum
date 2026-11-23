@@ -1,0 +1,15 @@
+plant plain = "Hello"
+plant escapes = "Tab:\t, newline:\n, quote: \", backslash: \\, nul: \0, cr: \r"
+plant braces = "literal \{braces\}"
+plant peach = "Unicode: \u{1F351}"
+plant hash = "# is not a comment in a string"
+plant greeting = "Hello, {name}! 2 + 2 = {2 + 2}"
+plant formatted = "{price:.2} [{name:>6}] [{name:<6}] {255:x}"
+plant nested = "Hello, {req.params["name"]}!"
+plant call = "{connect(host, port: 80)} {ages.get("Ada") ?? 0}"
+plant pair = "{ {"a": 1}["a"] } and {xs[0]:>4}"
+plant poem = """
+    Roses are red,
+    Plums are "purple" # still text
+    {count} of them, \u{1F351}
+    """

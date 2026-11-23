@@ -1,0 +1,17 @@
+plant a = 1 + 2 - 3 * 4 / 5 // 6 % 7 ** 8
+plant b = ~1 & 2 | 3 ^ 4 << 1 >> 2
+plant c = a == b or a != b and a < b or a <= b or a > b or a >= b
+x += 1
+x -= 1
+x *= 2
+x /= 2
+x //= 2
+x %= 2
+x **= 2
+x &= 1
+x |= 1
+x ^= 1
+x <<= 1
+x >>= 1
+plant d = maybe ?? fallback
+plant e = maybe?.field

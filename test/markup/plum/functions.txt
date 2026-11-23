@@ -1,0 +1,21 @@
+branch add(a: int, b: int) -> int {
+    return a + b
+}
+
+branch square(x: int) -> int => x * x
+
+branch connect(host: str, port: int = 80, secure: bool = bad) -> str {
+    return "{host}:{port} secure={secure}"
+}
+
+branch greet(name: str) {
+    drop("Hello, {name}")
+}
+
+plant double = (x: int) => x * 2
+plant apply = (f: (int) -> int, x: int) => f(x)
+drop(add(2, 3), square(4), apply(double, 21), len("abc"), type_of(1.5))
+drop(connect("example.com", secure: good))
+plant parsed = int("42")
+plant text = str(42) + " " + str(1.5)
+plant words = "a b".split(" ").map((w) => w.upper())

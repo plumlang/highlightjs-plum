@@ -1,0 +1,17 @@
+<span class="hljs-keyword">plant</span> a <span class="hljs-operator">=</span> <span class="hljs-number">1</span> <span class="hljs-operator">+</span> <span class="hljs-number">2</span> <span class="hljs-operator">-</span> <span class="hljs-number">3</span> <span class="hljs-operator">*</span> <span class="hljs-number">4</span> <span class="hljs-operator">/</span> <span class="hljs-number">5</span> <span class="hljs-operator">//</span> <span class="hljs-number">6</span> <span class="hljs-operator">%</span> <span class="hljs-number">7</span> <span class="hljs-operator">**</span> <span class="hljs-number">8</span>
+<span class="hljs-keyword">plant</span> b <span class="hljs-operator">=</span> <span class="hljs-operator">~</span><span class="hljs-number">1</span> <span class="hljs-operator">&amp;</span> <span class="hljs-number">2</span> <span class="hljs-operator">|</span> <span class="hljs-number">3</span> <span class="hljs-operator">^</span> <span class="hljs-number">4</span> <span class="hljs-operator">&lt;&lt;</span> <span class="hljs-number">1</span> <span class="hljs-operator">&gt;&gt;</span> <span class="hljs-number">2</span>
+<span class="hljs-keyword">plant</span> c <span class="hljs-operator">=</span> a <span class="hljs-operator">==</span> b <span class="hljs-keyword">or</span> a <span class="hljs-operator">!=</span> b <span class="hljs-keyword">and</span> a <span class="hljs-operator">&lt;</span> b <span class="hljs-keyword">or</span> a <span class="hljs-operator">&lt;=</span> b <span class="hljs-keyword">or</span> a <span class="hljs-operator">&gt;</span> b <span class="hljs-keyword">or</span> a <span class="hljs-operator">&gt;=</span> b
+x <span class="hljs-operator">+=</span> <span class="hljs-number">1</span>
+x <span class="hljs-operator">-=</span> <span class="hljs-number">1</span>
+x <span class="hljs-operator">*=</span> <span class="hljs-number">2</span>
+x <span class="hljs-operator">/=</span> <span class="hljs-number">2</span>
+x <span class="hljs-operator">//=</span> <span class="hljs-number">2</span>
+x <span class="hljs-operator">%=</span> <span class="hljs-number">2</span>
+x <span class="hljs-operator">**=</span> <span class="hljs-number">2</span>
+x <span class="hljs-operator">&amp;=</span> <span class="hljs-number">1</span>
+x <span class="hljs-operator">|=</span> <span class="hljs-number">1</span>
+x <span class="hljs-operator">^=</span> <span class="hljs-number">1</span>
+x <span class="hljs-operator">&lt;&lt;=</span> <span class="hljs-number">1</span>
+x <span class="hljs-operator">&gt;&gt;=</span> <span class="hljs-number">1</span>
+<span class="hljs-keyword">plant</span> d <span class="hljs-operator">=</span> maybe <span class="hljs-operator">??</span> fallback
+<span class="hljs-keyword">plant</span> e <span class="hljs-operator">=</span> maybe<span class="hljs-operator">?.</span>field

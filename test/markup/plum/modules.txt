@@ -1,0 +1,7 @@
+seed math
+seed net.http
+seed net.http as web
+seed math { sqrt, PI }
+seed ./shapes
+seed ./models/user as user
+seed ../lib/plant

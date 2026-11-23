@@ -1,0 +1,32 @@
+plant count = 3
+root MAX_USERS = 100
+plant ok = good and not bad
+plant legacy = true or false
+plant name: str? = none
+plant kind_of = x is Shape
+plant n = 3.7 as int
+
+if count >= 3 {
+    drop("many")
+} else if count in [1, 2] {
+    drop("few")
+} else {
+    drop("none")
+}
+
+for i in 0..3 {
+    if i == 1 {
+        continue
+    }
+    break
+}
+
+while count > 0 {
+    count -= 1
+}
+
+match command {
+    "start" => drop("starting")
+    "stop", "halt" => drop("stopping")
+    else => drop("unknown")
+}

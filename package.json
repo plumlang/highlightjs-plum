@@ -1,0 +1,41 @@
+{
+  "name": "highlightjs-plum",
+  "version": "0.1.0",
+  "description": "Plumlang syntax highlighting for highlight.js",
+  "type": "module",
+  "main": "dist/plum.es.min.js",
+  "module": "dist/plum.es.min.js",
+  "exports": {
+    ".": "./dist/plum.es.min.js",
+    "./dist/plum.min.js": "./dist/plum.min.js",
+    "./dist/plum.es.min.js": "./dist/plum.es.min.js",
+    "./src/languages/plum.js": "./src/languages/plum.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "dist",
+    "NOTICE"
+  ],
+  "keywords": [
+    "highlight.js",
+    "highlightjs",
+    "syntax",
+    "syntax-highlighting",
+    "plum",
+    "plumlang"
+  ],
+  "author": "Elixpo and the Plumlang contributors",
+  "license": "MIT",
+  "homepage": "https://plum.elixpo.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plumlang/highlightjs-plum.git"
+  },
+  "bugs": {
+    "url": "https://github.com/plumlang/highlightjs-plum/issues"
+  },
+  "peerDependencies": {
+    "highlight.js": "^11.0.0"
+  }
+}

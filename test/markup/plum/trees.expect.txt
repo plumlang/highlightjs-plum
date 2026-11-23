@@ -1,0 +1,31 @@
+<span class="hljs-keyword">trait</span> <span class="hljs-title class_">Shape</span> {
+    <span class="hljs-keyword">branch</span> <span class="hljs-title function_">area</span>() <span class="hljs-operator">-&gt;</span> <span class="hljs-type">float</span>
+    <span class="hljs-keyword">branch</span> <span class="hljs-title function_">name</span>() <span class="hljs-operator">-&gt;</span> <span class="hljs-type">str</span> <span class="hljs-operator">=&gt;</span> <span class="hljs-string">&quot;shape&quot;</span>
+}
+
+<span class="hljs-keyword">tree</span> <span class="hljs-title class_">Circle</span> : <span class="hljs-title class_ inherited__">Shape</span> {
+    radius: <span class="hljs-type">float</span>
+    <span class="hljs-keyword">branch</span> <span class="hljs-title function_">area</span>() <span class="hljs-operator">-&gt;</span> <span class="hljs-type">float</span> <span class="hljs-operator">=&gt;</span> <span class="hljs-number">3.14159</span> <span class="hljs-operator">*</span> <span class="hljs-variable language_">self</span>.radius <span class="hljs-operator">**</span> <span class="hljs-number">2</span>
+}
+
+<span class="hljs-keyword">tree</span> <span class="hljs-title class_">Savings</span> : <span class="hljs-title class_ inherited__">Account</span> {
+    rate: <span class="hljs-type">float</span> <span class="hljs-operator">=</span> <span class="hljs-number">0.02</span>
+    _audit: <span class="hljs-type">list</span>[<span class="hljs-type">str</span>] <span class="hljs-operator">=</span> []
+    parent: <span class="hljs-keyword">weak</span> <span class="hljs-title class_">Node</span><span class="hljs-operator">?</span> <span class="hljs-operator">=</span> <span class="hljs-literal">none</span>
+
+    <span class="hljs-keyword">branch</span> <span class="hljs-title function_">deposit</span>(amount: <span class="hljs-type">float</span>) {
+        <span class="hljs-variable language_">super</span>.<span class="hljs-title function_ invoke__">deposit</span>(amount <span class="hljs-operator">*</span> (<span class="hljs-number">1.0</span> <span class="hljs-operator">+</span> <span class="hljs-variable language_">self</span>.rate))
+    }
+}
+
+<span class="hljs-keyword">kind</span> <span class="hljs-title class_">Direction</span> { <span class="hljs-title class_">North</span>, <span class="hljs-title class_">East</span>, <span class="hljs-title class_">South</span>, <span class="hljs-title class_">West</span> }
+
+<span class="hljs-keyword">kind</span> <span class="hljs-title class_">Payment</span> {
+    <span class="hljs-title class_">Cash</span>
+    <span class="hljs-title class_">Card</span>(last4: <span class="hljs-type">str</span>)
+}
+
+<span class="hljs-keyword">plant</span> shapes: <span class="hljs-type">list</span>[<span class="hljs-title class_">Shape</span>] <span class="hljs-operator">=</span> [<span class="hljs-title class_">Circle</span>(<span class="hljs-number">1.0</span>)]
+<span class="hljs-keyword">plant</span> ages: <span class="hljs-type">map</span>[<span class="hljs-type">str</span>, <span class="hljs-type">int</span>] <span class="hljs-operator">=</span> {:}
+<span class="hljs-keyword">plant</span> seen: <span class="hljs-type">set</span>[<span class="hljs-type">int</span>] <span class="hljs-operator">=</span> <span class="hljs-type">set</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>])
+<span class="hljs-built_in">drop</span>(<span class="hljs-title class_">Direction</span>.North, math.PI)

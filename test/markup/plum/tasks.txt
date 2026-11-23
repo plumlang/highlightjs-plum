@@ -1,0 +1,15 @@
+seed time
+
+plant job = spawn slow_square(7)
+plant ch = Channel[int]()
+spawn (() => {
+    for i in 0..3 {
+        ch.send(i)
+    }
+    ch.close()
+})()
+
+for n in ch {
+    drop("got {n}")
+}
+plant answer = ask("name? ")

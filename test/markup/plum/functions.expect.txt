@@ -1,0 +1,21 @@
+<span class="hljs-keyword">branch</span> <span class="hljs-title function_">add</span>(a: <span class="hljs-type">int</span>, b: <span class="hljs-type">int</span>) <span class="hljs-operator">-&gt;</span> <span class="hljs-type">int</span> {
+    <span class="hljs-keyword">return</span> a <span class="hljs-operator">+</span> b
+}
+
+<span class="hljs-keyword">branch</span> <span class="hljs-title function_">square</span>(x: <span class="hljs-type">int</span>) <span class="hljs-operator">-&gt;</span> <span class="hljs-type">int</span> <span class="hljs-operator">=&gt;</span> x <span class="hljs-operator">*</span> x
+
+<span class="hljs-keyword">branch</span> <span class="hljs-title function_">connect</span>(host: <span class="hljs-type">str</span>, port: <span class="hljs-type">int</span> <span class="hljs-operator">=</span> <span class="hljs-number">80</span>, secure: <span class="hljs-type">bool</span> <span class="hljs-operator">=</span> <span class="hljs-literal">bad</span>) <span class="hljs-operator">-&gt;</span> <span class="hljs-type">str</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;<span class="hljs-subst">{host}</span>:<span class="hljs-subst">{port}</span> secure=<span class="hljs-subst">{secure}</span>&quot;</span>
+}
+
+<span class="hljs-keyword">branch</span> <span class="hljs-title function_">greet</span>(name: <span class="hljs-type">str</span>) {
+    <span class="hljs-built_in">drop</span>(<span class="hljs-string">&quot;Hello, <span class="hljs-subst">{name}</span>&quot;</span>)
+}
+
+<span class="hljs-keyword">plant</span> double <span class="hljs-operator">=</span> (x: <span class="hljs-type">int</span>) <span class="hljs-operator">=&gt;</span> x <span class="hljs-operator">*</span> <span class="hljs-number">2</span>
+<span class="hljs-keyword">plant</span> apply <span class="hljs-operator">=</span> (f: (<span class="hljs-type">int</span>) <span class="hljs-operator">-&gt;</span> <span class="hljs-type">int</span>, x: <span class="hljs-type">int</span>) <span class="hljs-operator">=&gt;</span> <span class="hljs-title function_ invoke__">f</span>(x)
+<span class="hljs-built_in">drop</span>(<span class="hljs-title function_ invoke__">add</span>(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>), <span class="hljs-title function_ invoke__">square</span>(<span class="hljs-number">4</span>), <span class="hljs-title function_ invoke__">apply</span>(double, <span class="hljs-number">21</span>), <span class="hljs-built_in">len</span>(<span class="hljs-string">&quot;abc&quot;</span>), <span class="hljs-built_in">type_of</span>(<span class="hljs-number">1.5</span>))
+<span class="hljs-built_in">drop</span>(<span class="hljs-title function_ invoke__">connect</span>(<span class="hljs-string">&quot;example.com&quot;</span>, secure: <span class="hljs-literal">good</span>))
+<span class="hljs-keyword">plant</span> parsed <span class="hljs-operator">=</span> <span class="hljs-type">int</span>(<span class="hljs-string">&quot;42&quot;</span>)
+<span class="hljs-keyword">plant</span> text <span class="hljs-operator">=</span> <span class="hljs-type">str</span>(<span class="hljs-number">42</span>) <span class="hljs-operator">+</span> <span class="hljs-string">&quot; &quot;</span> <span class="hljs-operator">+</span> <span class="hljs-type">str</span>(<span class="hljs-number">1.5</span>)
+<span class="hljs-keyword">plant</span> words <span class="hljs-operator">=</span> <span class="hljs-string">&quot;a b&quot;</span>.<span class="hljs-title function_ invoke__">split</span>(<span class="hljs-string">&quot; &quot;</span>).<span class="hljs-title function_ invoke__">map</span>((w) <span class="hljs-operator">=&gt;</span> w.<span class="hljs-title function_ invoke__">upper</span>())

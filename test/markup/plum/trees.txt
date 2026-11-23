@@ -1,0 +1,31 @@
+trait Shape {
+    branch area() -> float
+    branch name() -> str => "shape"
+}
+
+tree Circle : Shape {
+    radius: float
+    branch area() -> float => 3.14159 * self.radius ** 2
+}
+
+tree Savings : Account {
+    rate: float = 0.02
+    _audit: list[str] = []
+    parent: weak Node? = none
+
+    branch deposit(amount: float) {
+        super.deposit(amount * (1.0 + self.rate))
+    }
+}
+
+kind Direction { North, East, South, West }
+
+kind Payment {
+    Cash
+    Card(last4: str)
+}
+
+plant shapes: list[Shape] = [Circle(1.0)]
+plant ages: map[str, int] = {:}
+plant seen: set[int] = set([1, 2])
+drop(Direction.North, math.PI)

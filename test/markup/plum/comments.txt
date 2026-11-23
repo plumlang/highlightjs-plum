@@ -1,0 +1,5 @@
+# A whole-line comment
+plant total = 0   # a comment after code
+# TODO: there are no block comments
+plant tag = "#not-a-comment"
+plant n = 7 // 2   # `//` is integer division, not a comment

@@ -1,0 +1,23 @@
+<span class="hljs-keyword">tree</span> <span class="hljs-title class_">NotFound</span> : <span class="hljs-title class_ inherited__">Error</span> {
+    path: <span class="hljs-type">str</span>
+}
+
+<span class="hljs-keyword">try</span> {
+    <span class="hljs-title function_ invoke__">load</span>(<span class="hljs-string">&quot;config.txt&quot;</span>)
+} <span class="hljs-keyword">catch</span> e: <span class="hljs-title class_">NotFound</span> {
+    <span class="hljs-built_in">drop</span>(<span class="hljs-string">&quot;missing: <span class="hljs-subst">{e.path}</span>&quot;</span>)
+} <span class="hljs-keyword">catch</span> e: <span class="hljs-type">ValueError</span> {
+    <span class="hljs-keyword">throw</span> e
+} <span class="hljs-keyword">catch</span> e {
+    <span class="hljs-built_in">drop</span>(<span class="hljs-string">&quot;other: <span class="hljs-subst">{e.message}</span>&quot;</span>)
+} <span class="hljs-keyword">finally</span> {
+    <span class="hljs-built_in">drop</span>(<span class="hljs-string">&quot;done&quot;</span>)
+}
+
+<span class="hljs-keyword">plant</span> safe <span class="hljs-operator">=</span> <span class="hljs-keyword">try</span> <span class="hljs-type">int</span>(<span class="hljs-string">&quot;x&quot;</span>) <span class="hljs-operator">??</span> <span class="hljs-number">0</span>
+<span class="hljs-keyword">plant</span> upper <span class="hljs-operator">=</span> <span class="hljs-title function_ invoke__">find_user</span>(<span class="hljs-number">1</span>)<span class="hljs-operator">?.</span><span class="hljs-title function_ invoke__">upper</span>()
+<span class="hljs-keyword">if</span> <span class="hljs-keyword">plant</span> name <span class="hljs-operator">=</span> <span class="hljs-title function_ invoke__">find_user</span>(<span class="hljs-number">1</span>) {
+    <span class="hljs-built_in">drop</span>(<span class="hljs-string">&quot;found <span class="hljs-subst">{name}</span>&quot;</span>)
+}
+<span class="hljs-built_in">assert</span>(safe <span class="hljs-operator">==</span> <span class="hljs-number">0</span>, <span class="hljs-string">&quot;parsed&quot;</span>)
+<span class="hljs-built_in">exit</span>(<span class="hljs-number">1</span>)

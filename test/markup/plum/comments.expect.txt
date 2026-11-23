@@ -1,0 +1,5 @@
+<span class="hljs-comment"># A whole-line comment</span>
+<span class="hljs-keyword">plant</span> total <span class="hljs-operator">=</span> <span class="hljs-number">0</span>   <span class="hljs-comment"># a comment after code</span>
+<span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> there are no block comments</span>
+<span class="hljs-keyword">plant</span> tag <span class="hljs-operator">=</span> <span class="hljs-string">&quot;#not-a-comment&quot;</span>
+<span class="hljs-keyword">plant</span> n <span class="hljs-operator">=</span> <span class="hljs-number">7</span> <span class="hljs-operator">//</span> <span class="hljs-number">2</span>   <span class="hljs-comment"># `//` is integer division, not a comment</span>

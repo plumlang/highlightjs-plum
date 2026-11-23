@@ -1,0 +1,15 @@
+<span class="hljs-keyword">seed</span> time
+
+<span class="hljs-keyword">plant</span> job <span class="hljs-operator">=</span> <span class="hljs-keyword">spawn</span> <span class="hljs-title function_ invoke__">slow_square</span>(<span class="hljs-number">7</span>)
+<span class="hljs-keyword">plant</span> ch <span class="hljs-operator">=</span> <span class="hljs-type">Channel</span>[<span class="hljs-type">int</span>]()
+<span class="hljs-keyword">spawn</span> (() <span class="hljs-operator">=&gt;</span> {
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-number">0</span><span class="hljs-operator">..</span><span class="hljs-number">3</span> {
+        ch.<span class="hljs-title function_ invoke__">send</span>(i)
+    }
+    ch.<span class="hljs-title function_ invoke__">close</span>()
+})()
+
+<span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> ch {
+    <span class="hljs-built_in">drop</span>(<span class="hljs-string">&quot;got <span class="hljs-subst">{n}</span>&quot;</span>)
+}
+<span class="hljs-keyword">plant</span> answer <span class="hljs-operator">=</span> <span class="hljs-built_in">ask</span>(<span class="hljs-string">&quot;name? &quot;</span>)

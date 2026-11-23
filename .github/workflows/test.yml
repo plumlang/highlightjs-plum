@@ -1,0 +1,34 @@
+# Markup tests and the dist/ check, run with highlight.js's own build tool
+# and test runner, as its 3rd-party grammar guide describes.
+name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: highlightjs/highlight.js
+      - uses: actions/checkout@v4
+        with:
+          path: extra/highlightjs-plum
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - name: Markup tests
+        run: |
+          node tools/build.js -t node plum
+          ONLY_EXTRA=true npx mocha test/markup
+      - name: dist/ is up to date
+        run: |
+          node tools/build.js -t cdn plum
+          git -C extra/highlightjs-plum diff --exit-code -I '^/\*! `plum` grammar compiled for Highlight.js' dist/

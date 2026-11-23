@@ -1,5 +1,5 @@
 {
-  "name": "highlightjs-plum",
+  "name": "@plumlang/highlightjs-plum",
   "version": "0.1.0",
   "description": "Plumlang syntax highlighting for highlight.js",
   "type": "module",
@@ -13,7 +13,7 @@
     "./package.json": "./package.json"
   },
   "files": [
-    "src",
+    "src/languages/plum.js",
     "dist",
     "NOTICE"
   ],
@@ -23,7 +23,9 @@
     "syntax",
     "syntax-highlighting",
     "plum",
-    "plumlang"
+    "plumlang",
+    "highlighting",
+    "language"
   ],
   "author": "Elixpo and the Plumlang contributors",
   "license": "MIT",
@@ -37,5 +39,9 @@
   },
   "peerDependencies": {
     "highlight.js": "^11.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   }
 }

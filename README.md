@@ -39,24 +39,37 @@ Load `dist/plum.min.js` after highlight.js. It registers the language itself.
 <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/default.min.css">
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/plumlang/highlightjs-plum@main/dist/plum.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@plumlang/highlightjs-plum/dist/plum.min.js"></script>
 <script>hljs.highlightAll();</script>
 
 <pre><code class="language-plum">plant name = "Ada"
 drop("Hello, {name}!")</code></pre>
 ```
 
+Pin a version in production, such as
+`https://cdn.jsdelivr.net/npm/@plumlang/highlightjs-plum@0.1.0/dist/plum.min.js`.
+
+As an ES module in the page, with highlight.js's ES build:
+
+```html
+<script type="module">
+  import hljs from 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/es/highlight.min.js';
+  import plum from 'https://cdn.jsdelivr.net/npm/@plumlang/highlightjs-plum/dist/plum.es.min.js';
+
+  hljs.registerLanguage('plum', plum);
+  hljs.highlightAll();
+</script>
+```
+
 ### With npm
 
 ```sh
-npm install highlight.js highlightjs-plum
-# or, straight from this repository:
-npm install highlight.js github:plumlang/highlightjs-plum
+npm install highlight.js @plumlang/highlightjs-plum
 ```
 
 ```js
 import hljs from 'highlight.js/lib/core';
-import plum from 'highlightjs-plum';
+import plum from '@plumlang/highlightjs-plum';
 
 hljs.registerLanguage('plum', plum);
 hljs.highlightAll();
@@ -66,11 +79,11 @@ With CommonJS (Node.js 20.19 or later, which can `require` ES modules):
 
 ```js
 const hljs = require('highlight.js/lib/core');
-hljs.registerLanguage('plum', require('highlightjs-plum').default);
+hljs.registerLanguage('plum', require('@plumlang/highlightjs-plum').default);
 ```
 
-The grammar source is `src/languages/plum.js`, if your build compiles
-grammars itself.
+The grammar source is `@plumlang/highlightjs-plum/src/languages/plum.js`,
+if your build compiles grammars itself.
 
 ## Developing
 
@@ -96,6 +109,15 @@ HTML highlight.js should produce for it. After changing the grammar, rebuild
 The [Plumlang language documentation](https://plum.elixpo.com/docs/language/) and the
 [Tree-sitter grammar](https://github.com/plumlang/tree-sitter-plum) are the
 references for what each construct is.
+
+## Releasing
+
+Each GitHub release publishes the package to npm as
+[`@plumlang/highlightjs-plum`](https://www.npmjs.com/package/@plumlang/highlightjs-plum)
+(`.github/workflows/publish.yml`), with provenance. Bump `version` in
+`package.json`, rebuild `dist/`, merge, then create a release tagged
+`v` and that version. The workflow stops if the tag and `package.json`
+disagree.
 
 ## License
 

@@ -1,6 +1,6 @@
 {
   "name": "@plumlang/highlightjs-plum",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Plumlang syntax highlighting for highlight.js",
   "type": "module",
   "main": "dist/plum.es.min.js",

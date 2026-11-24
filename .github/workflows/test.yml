@@ -6,6 +6,10 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
+  # Weekly, to catch a keyword added to Plumlang's lexer since the last push.
+  schedule:
+    - cron: "0 6 * * 1"
 
 permissions:
   contents: read
@@ -23,11 +27,16 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - uses: plumlang/setup-plum@v1
       - run: npm ci
       - name: Markup tests
         run: |
           node tools/build.js -t node plum
           ONLY_EXTRA=true npx mocha test/markup
+      # plumlang's tests/highlight/ from main: every keyword, and every token
+      # of sample.plum as `plum tokens` reads it.
+      - name: Shared highlighting sample
+        run: node extra/highlightjs-plum/test/sample.cjs
       - name: dist/ is up to date
         run: |
           node tools/build.js -t cdn plum

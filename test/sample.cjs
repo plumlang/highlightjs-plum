@@ -8,7 +8,12 @@
 //      numbers `number`, strings `string`, the text after an interpolation
 //      `subst`, formats `symbol`, and names and operators are neither
 //      strings nor comments;
-//   3. every `#` comment is a comment, and every `#` in a string is not.
+//   3. every comment is a comment (`#`, `##` and nested `#[ ... ]#` block
+//      comments, every character of them), and every `#` in a string is
+//      not.
+//
+// Tokens inside block comments are left out of 2, so a `plum` older than
+// block comments (it reads them as code) still checks the rest.
 //
 // Run from a highlight.js checkout with this repository in
 // extra/highlightjs-plum, after `node tools/build.js -t node plum`:
@@ -59,11 +64,12 @@ function scopesByPosition(html) {
   return map;
 }
 
-// Where comments start in Plumlang source (a `#` outside a string), and the
-// `#`s inside strings, as "line:column" (1-based, code points): following
-// strings, escapes, """ strings and {interpolation} with nested brackets.
+// Where comments start in Plumlang source (a `#` outside a string), every
+// character of block comments, and the `#`s inside strings, as
+// "line:column" (1-based, code points): following strings, escapes, """
+// strings, {interpolation} with nested brackets and nested #[ ]#.
 function hashes(text) {
-  const comments = [], inStrings = [];
+  const comments = [], inStrings = [], inBlocks = new Set();
   const mode = []; // "s" in a "string, "t" in a """string, a bracket in code
   const chars = Array.from(text);
   let line = 1, col = 0;
@@ -80,6 +86,20 @@ function hashes(text) {
       else if (top === "s" && c === '"') mode.pop();
       continue;
     }
+    if (at(i, "#[")) {
+      comments.push(`${line}:${col}`);
+      let depth = 0;
+      for (; i < chars.length; i++, col++) {
+        if (chars[i] === "\n") { line++; col = 0; continue; }
+        inBlocks.add(`${line}:${col}`);
+        if (at(i, "#[")) { depth++; inBlocks.add(`${line}:${col + 1}`); i++; col++; }
+        else if (at(i, "]#")) {
+          depth--; inBlocks.add(`${line}:${col + 1}`); i++; col++;
+          if (depth === 0) break;
+        }
+      }
+      continue;
+    }
     if (c === "#") {
       comments.push(`${line}:${col}`);
       while (i + 1 < chars.length && chars[i + 1] !== "\n") { i++; col++; }
@@ -90,7 +110,7 @@ function hashes(text) {
     else if ("{([".includes(c)) mode.push(c);
     else if ("})]".includes(c)) mode.pop();
   }
-  return { comments, inStrings };
+  return { comments, inStrings, inBlocks };
 }
 
 const KEYWORD_SCOPES = ["keyword", "literal", "variable language"];
@@ -119,6 +139,7 @@ const LITERAL = { GOOD: "literal", BAD: "literal", NONE: "literal", SELF: "varia
   fs.writeFileSync(path.join(tmp, "sample.plum"), sample);
   const tokens = execFileSync(process.env.PLUM || "plum", ["tokens", path.join(tmp, "sample.plum")], { encoding: "utf8" });
   fs.rmSync(tmp, { recursive: true });
+  const { comments, inStrings, inBlocks } = hashes(sample);
   let checked = 0;
   for (const t of tokens.split(/\r?\n/)) {
     const m = /^(\d+):(\d+) (\w+)(?: (.*))?$/.exec(t);
@@ -128,6 +149,7 @@ const LITERAL = { GOOD: "literal", BAD: "literal", NONE: "literal", SELF: "varia
     const source = lines[+l - 1];
     // `seed ./path` is one string, like tree-sitter's path node.
     if (/^\s*seed\s+\.\.?\//.test(source) && kind !== "SEED") continue;
+    if (inBlocks.has(`${l}:${c}`)) continue;
     const stack = pos.get(`${l}:${c}`) || [];
     const inner = stack[stack.length - 1] || "";
     const text = Array.from(source).slice(+c - 1).join("");
@@ -144,13 +166,13 @@ const LITERAL = { GOOD: "literal", BAD: "literal", NONE: "literal", SELF: "varia
   }
 
   // 3. Comments, and `#` in strings.
-  const { comments, inStrings } = hashes(sample);
   const isComment = (at) => (pos.get(at) || []).includes("comment");
   for (const at of comments) if (!isComment(at)) problems.push(`sample.plum:${at}: '#' should start a comment`);
+  for (const at of inBlocks) if (!isComment(at)) problems.push(`sample.plum:${at}: should be in a block comment`);
   for (const at of inStrings) if (isComment(at)) problems.push(`sample.plum:${at}: '#' in a string is highlighted as a comment`);
 
   for (const p of problems) console.log(p);
-  console.log(`${keywords.length} keywords, ${checked} tokens, ${comments.length} comments and ${inStrings.length} '#' in strings checked: ${problems.length} problems`);
+  console.log(`${keywords.length} keywords, ${checked} tokens, ${comments.length} comments (${inBlocks.size} characters of block comments) and ${inStrings.length} '#' in strings checked: ${problems.length} problems`);
   process.exitCode = problems.length ? 1 : 0;
 })().catch((e) => {
   console.error(e);

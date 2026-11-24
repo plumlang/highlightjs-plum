@@ -15,8 +15,9 @@ The grammar follows the Plumlang lexer and covers:
 - **Strings**: `"..."` and `"""..."""`, escapes (`\n`, `\{`, `\u{1F351}`, ...),
   and `{interpolation}` with the expression highlighted inside it, nested
   strings included, and its `{value:format}` spec.
-- **Comments**: `#` to the end of the line. There are no block comments, and a
-  `#` inside a string is text.
+- **Comments**: `#` to the end of the line, `##` doc comments (as comments:
+  highlight.js has no scope of its own for them), and `#[ ... ]#` block
+  comments, nested and over several lines. A `#` inside a string is text.
 - **Declarations and names**: function, tree, trait and kind names, the tree a
   tree extends, built-in types (`int`, `str`, `list`, `map`, `Channel`, ...)
   and error trees, built-in functions (`drop`, `len`, `type_of`, ...), `self`
@@ -47,7 +48,7 @@ drop("Hello, {name}!")</code></pre>
 ```
 
 Pin a version in production, such as
-`https://cdn.jsdelivr.net/npm/@plumlang/highlightjs-plum@1.0.0/dist/plum.min.js`.
+`https://cdn.jsdelivr.net/npm/@plumlang/highlightjs-plum@1.0.1/dist/plum.min.js`.
 
 As an ES module in the page, with highlight.js's ES build:
 

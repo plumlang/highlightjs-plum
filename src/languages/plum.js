@@ -306,7 +306,16 @@ export default function(hljs) {
     relevance: 0
   };
 
+  // `#[ ... ]#` nests: each `#[` inside needs its own `]#`. Doc comments
+  // (`##` lines) are line comments here; highlight.js has no scope of its
+  // own for them.
+  const BLOCK_COMMENT = hljs.COMMENT(/#\[/, /\]#/, {
+    contains: [ 'self' ],
+    relevance: 10
+  });
+
   const EXPRESSION = [
+    BLOCK_COMMENT,
     hljs.HASH_COMMENT_MODE,
     TRIPLE_STRING,
     STRING,

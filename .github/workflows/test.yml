@@ -27,6 +27,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - uses: actions/checkout@v4
+        with:
+          repository: plumlang/plumlang
+          ref: lang/issue-161
+          path: .plumlang
       - uses: plumlang/setup-plum@v1
       - run: npm ci
       - name: Markup tests
@@ -36,7 +41,7 @@ jobs:
       # plumlang's tests/highlight/ from main: every keyword, and every token
       # of sample.plum as `plum tokens` reads it.
       - name: Shared highlighting sample
-        run: node extra/highlightjs-plum/test/sample.cjs
+        run: node extra/highlightjs-plum/test/sample.cjs .plumlang/tests/highlight
       - name: dist/ is up to date
         run: |
           node tools/build.js -t cdn plum

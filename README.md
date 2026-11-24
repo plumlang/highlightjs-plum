@@ -47,7 +47,7 @@ drop("Hello, {name}!")</code></pre>
 ```
 
 Pin a version in production, such as
-`https://cdn.jsdelivr.net/npm/@plumlang/highlightjs-plum@0.1.0/dist/plum.min.js`.
+`https://cdn.jsdelivr.net/npm/@plumlang/highlightjs-plum@1.0.0/dist/plum.min.js`.
 
 As an ES module in the page, with highlight.js's ES build:
 

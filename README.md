@@ -98,6 +98,7 @@ npm install
 
 node tools/build.js -t node plum
 ONLY_EXTRA=true npx mocha test/markup    # the markup tests in test/markup/plum
+node extra/highlightjs-plum/test/sample.cjs   # Plumlang's shared sample (needs plum)
 
 node tools/build.js -t cdn plum          # writes extra/highlightjs-plum/dist/
 ```
@@ -105,6 +106,13 @@ node tools/build.js -t cdn plum          # writes extra/highlightjs-plum/dist/
 Each test is a `.txt` file of Plumlang and the `.expect.txt` file with the
 HTML highlight.js should produce for it. After changing the grammar, rebuild
 `dist/` and commit it with the change.
+
+`test/sample.cjs` checks the grammar against Plumlang's shared highlighting
+sample ([`tests/highlight/`](https://github.com/plumlang/plumlang/tree/main/tests/highlight),
+downloaded from `main`, or a local folder as its argument): every keyword
+in the lexer is highlighted as one, and every token of `sample.plum`, as
+`plum tokens` reads it, gets the right scope. CI runs it on every push and
+weekly, so a keyword added to Plumlang fails here until the grammar knows it.
 
 The [Plumlang language documentation](https://plum.elixpo.com/docs/language/) and the
 [Tree-sitter grammar](https://github.com/plumlang/tree-sitter-plum) are the
